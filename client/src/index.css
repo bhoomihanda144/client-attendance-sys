@@ -1,0 +1,187 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background-color: #0f172a;
+    color: #f1f5f9;
+    font-family: 'Syne', system-ui, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0f172a;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #10b981;
+  }
+}
+
+@layer components {
+  .glass {
+    background: rgba(30, 41, 59, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .glass-strong {
+    background: rgba(30, 41, 59, 0.85);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .card {
+    @apply glass rounded-2xl shadow-card;
+  }
+
+  .btn-primary {
+    @apply bg-accent hover:bg-accent-dark text-bg-primary font-semibold 
+           px-6 py-3 rounded-xl transition-all duration-200 
+           hover:shadow-glow-green active:scale-95 cursor-pointer;
+  }
+
+  .btn-secondary {
+    @apply glass border border-white/10 hover:border-accent/40 text-text-primary 
+           font-semibold px-6 py-3 rounded-xl transition-all duration-200 
+           hover:bg-accent/10 active:scale-95 cursor-pointer;
+  }
+
+  .btn-danger {
+    @apply bg-danger hover:bg-red-600 text-white font-semibold 
+           px-6 py-3 rounded-xl transition-all duration-200 
+           hover:shadow-glow-red active:scale-95 cursor-pointer;
+  }
+
+  .input {
+    @apply glass border border-white/10 focus:border-accent/60 
+           text-text-primary placeholder:text-text-muted 
+           rounded-xl px-4 py-3 w-full outline-none 
+           transition-all duration-200 focus:ring-2 focus:ring-accent/20;
+  }
+
+  .badge-green {
+    @apply bg-accent/20 text-accent-light border border-accent/30 
+           text-xs font-mono px-2.5 py-1 rounded-lg;
+  }
+
+  .badge-red {
+    @apply bg-danger/20 text-danger-light border border-danger/30 
+           text-xs font-mono px-2.5 py-1 rounded-lg;
+  }
+
+  .badge-yellow {
+    @apply bg-warn/20 text-warn-light border border-warn/30 
+           text-xs font-mono px-2.5 py-1 rounded-lg;
+  }
+
+  .grid-bg {
+    background-image: 
+      linear-gradient(rgba(16, 185, 129, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(16, 185, 129, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(135deg, #10b981, #34d399);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-blue {
+    background: linear-gradient(135deg, #60a5fa, #a78bfa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glow-green {
+    box-shadow: 0 0 40px rgba(16, 185, 129, 0.25);
+  }
+
+  .glow-red {
+    box-shadow: 0 0 40px rgba(239, 68, 68, 0.25);
+  }
+
+  .noise {
+    position: relative;
+  }
+
+  .noise::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    opacity: 0.4;
+    border-radius: inherit;
+  }
+}
+
+/* QR Scanner override */
+#qr-reader {
+  border: none !important;
+  background: transparent !important;
+  width: 100% !important;
+}
+
+#qr-reader video {
+  border-radius: 16px !important;
+  width: 100% !important;
+  object-fit: cover !important;
+}
+
+#qr-reader__scan_region {
+  min-height: unset !important;
+  background: transparent !important;
+}
+
+#qr-reader__camera_selection,
+#qr-reader__filescan_input {
+  color: #94a3b8 !important;
+  background: rgba(30, 41, 59, 0.6) !important;
+  border: 1px solid rgba(255,255,255,0.1) !important;
+  border-radius: 8px !important;
+  padding: 8px !important;
+  width: 100% !important;
+  margin-top: 8px !important;
+}
+
+#qr-reader__header_message {
+  display: none !important;
+}
+
+#qr-reader__status_span {
+  color: #94a3b8 !important;
+  font-size: 12px !important;
+}
+
+#qr-reader img[alt="Info icon"],
+#qr-reader img[alt="Camera based scan"] {
+  display: none !important;
+}
